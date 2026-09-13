@@ -5,23 +5,16 @@
 @layer base {
   html, body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    overscroll-behavior-y: none;
   }
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   code, pre {
     font-family: 'JetBrains Mono', monospace;
-  }
-}
-
-@media (min-width: 768px) {
-  html, body {
-    overscroll-behavior: auto;
   }
 }
 
