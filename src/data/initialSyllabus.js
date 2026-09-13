@@ -52,7 +52,7 @@ export const initialSyllabusData = [
     phaseId: "phase-2",
     phaseName: "Phase 2: Core Hardware & Algorithms",
     timeline: "Dec 2026 - Feb 2027",
-    objective: "Master hardware logic synthesis, data structures, and algorithmic complexities.",
+    objective: "Master hardware architecture, computer organization, data structures, and algorithms.",
     subjects: [
       {
         id: "digital-logic",
@@ -66,6 +66,22 @@ export const initialSyllabusData = [
           { key: "madeEasyTest", label: "Made Easy Test", type: "test" }
         ],
         checklist: { booleanKmaps: false, sequential: false, solvePYQs: false, madeEasyTest: false },
+        notes: ""
+      },
+      {
+        id: "coa",
+        name: "Computer Organization & Architecture (COA)",
+        weightage: 9.7,
+        youtubeUrl: "https://www.youtube.com/@AmitKhuranaSir/playlists",
+        subTasks: [
+          { key: "machineInstructions", label: "Machine Instructions", type: "lecture" },
+          { key: "pipelining", label: "Pipelining", type: "lecture" },
+          { key: "cacheMemory", label: "Cache & Memory", type: "lecture" },
+          { key: "ioInterfaces", label: "I/O Interfaces", type: "lecture" },
+          { key: "solvePYQs", label: "Solve PYQs", type: "pyq" },
+          { key: "madeEasyTest", label: "Made Easy Test", type: "test" }
+        ],
+        checklist: { machineInstructions: false, pipelining: false, cacheMemory: false, ioInterfaces: false, solvePYQs: false, madeEasyTest: false },
         notes: ""
       },
       {
@@ -158,9 +174,9 @@ export const initialSyllabusData = [
   },
   {
     phaseId: "phase-5",
-    phaseName: "Phase 5: High-Yield",
+    phaseName: "Phase 5: High-Yield & Full Coverage",
     timeline: "Jul - Aug 2027",
-    objective: "Master Computer Networks core protocol layers and Engineering Mathematics.",
+    objective: "Cover complete 100% Computer Networks protocol layers and Engineering Mathematics.",
     subjects: [
       {
         id: "computer-networks",
@@ -171,10 +187,11 @@ export const initialSyllabusData = [
           { key: "dataLink", label: "Data Link Layer & MAC", type: "lecture" },
           { key: "network", label: "Network Layer & Subnetting", type: "lecture" },
           { key: "transport", label: "Transport Layer (TCP/UDP)", type: "lecture" },
+          { key: "appSecurity", label: "Application Layer & Security", type: "lecture" },
           { key: "solvePYQs", label: "Solve PYQs", type: "pyq" },
           { key: "madeEasyTest", label: "Made Easy Test", type: "test" }
         ],
-        checklist: { dataLink: false, network: false, transport: false, solvePYQs: false, madeEasyTest: false },
+        checklist: { dataLink: false, network: false, transport: false, appSecurity: false, solvePYQs: false, madeEasyTest: false },
         notes: ""
       },
       {

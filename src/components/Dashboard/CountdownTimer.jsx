@@ -38,17 +38,17 @@ export const CountdownTimer = () => {
           </div>
           <div>
             <h3 className="font-extrabold text-white text-base flex items-center gap-1.5">
-              August 1, 2027 Deadline
+              Deadline for 100% Syllabus Completion
             </h3>
             <p className="text-xs text-slate-400">
-              Syllabus Completion & Full Mock Phase Mandate
+              August 1, 2027 Target • Full Syllabus & Mock Phase Mandate
             </p>
           </div>
         </div>
 
         <span className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
           <AlertTriangle className="w-3.5 h-3.5 mr-1" />
-          Goal Target
+          100% Goal
         </span>
       </div>
 

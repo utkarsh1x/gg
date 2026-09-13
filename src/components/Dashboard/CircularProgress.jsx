@@ -1,13 +1,12 @@
 import React from 'react';
 
-export const CircularProgress = ({ percentage, targetPercentage = 80, coveredWeightage = 0 }) => {
+export const CircularProgress = ({ percentage, targetPercentage = 100, coveredWeightage = 0 }) => {
   const size = 220;
   const strokeWidth = 14;
   const center = size / 2;
   const radius = center - strokeWidth;
   const circumference = 2 * Math.PI * radius;
   
-  // Calculate dash offset
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
@@ -25,12 +24,12 @@ export const CircularProgress = ({ percentage, targetPercentage = 80, coveredWei
             fill="transparent"
           />
 
-          {/* 80% Target Marker Dash (Visual Goal line) */}
+          {/* 100% Target Marker Dash (Visual Goal line) */}
           <circle
             cx={center}
             cy={center}
             r={radius}
-            className="stroke-amber-500/40 dark:stroke-amber-400/30"
+            className="stroke-emerald-500/30 dark:stroke-emerald-400/20"
             strokeWidth={strokeWidth + 4}
             fill="transparent"
             strokeDasharray={`4 ${circumference / 20}`}
@@ -59,15 +58,15 @@ export const CircularProgress = ({ percentage, targetPercentage = 80, coveredWei
           <div className="flex items-baseline justify-center font-black text-4xl text-slate-900 dark:text-white my-0.5">
             <span>{percentage}%</span>
           </div>
-          <div className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-            Target: {targetPercentage}% by Aug 2027
+          <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            Target: 100% Syllabus
           </div>
         </div>
       </div>
 
       <div className="mt-4 text-center">
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          Estimated GATE Weightage Covered: <strong className="text-cyan-600 dark:text-cyan-400 font-bold text-sm">~{coveredWeightage} Marks</strong>
+          Estimated Weightage Covered: <strong className="text-cyan-600 dark:text-cyan-400 font-bold text-sm">~{coveredWeightage} / 100 Marks</strong>
         </p>
       </div>
     </div>

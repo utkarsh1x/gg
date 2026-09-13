@@ -4,17 +4,17 @@ import { CircularProgress } from './CircularProgress';
 import { TodaysFocus } from './TodaysFocus';
 import { StreakCalendar } from './StreakCalendar';
 import { CountdownTimer } from './CountdownTimer';
-import { BookOpen, CheckSquare, Award, Clock, ArrowRight, ShieldCheck, Flame, Smartphone } from 'lucide-react';
+import { BookOpen, CheckSquare, Award, Clock, ArrowRight, ShieldCheck, Flame } from 'lucide-react';
 
 export const Dashboard = () => {
-  const { metrics, setActiveTab, currentStreak } = usePlanner();
+  const { metrics, setActiveTab } = usePlanner();
 
   const getRankEstimation = (covered) => {
-    if (covered >= 75) return { rank: 'Top 10 - 50', desc: 'Elite Performance (Top IITs)', color: 'text-amber-400' };
-    if (covered >= 65) return { rank: 'Top 200 - 500', desc: 'Strong Rank (Mid-tier IITs / NITs)', color: 'text-emerald-400' };
-    if (covered >= 55) return { rank: 'Top 1000 - 2000', desc: 'Good Rank (NITs & Premier Inst.)', color: 'text-cyan-400' };
-    if (covered >= 40) return { rank: 'Top 5000', desc: 'Qualifying Standard', color: 'text-blue-400' };
-    return { rank: 'Targeting 80%', desc: 'Building Foundations', color: 'text-slate-400' };
+    if (covered >= 85) return { rank: 'AIR 1 - 10', desc: 'Elite Performance (PSUs & Top IITs)', color: 'text-amber-400' };
+    if (covered >= 75) return { rank: 'AIR 10 - 50', desc: 'Top IITs (Bombay, Delhi, Madras)', color: 'text-emerald-400' };
+    if (covered >= 65) return { rank: 'AIR 200 - 500', desc: 'Mid-tier IITs / Top NITs', color: 'text-cyan-400' };
+    if (covered >= 55) return { rank: 'AIR 1000 - 2000', desc: 'NITs & Premier Institutions', color: 'text-blue-400' };
+    return { rank: 'Targeting 100%', desc: 'Building Complete Syllabus Coverage', color: 'text-slate-400' };
   };
 
   const rankInfo = getRankEstimation(metrics.coveredWeightage);
@@ -22,7 +22,7 @@ export const Dashboard = () => {
   return (
     <div className="space-y-6">
       
-      {/* 1. Countdown Timer (Top of Dashboard Deadline Aug 1, 2027) */}
+      {/* 1. Countdown Timer (Deadline for 100% Syllabus Completion) */}
       <CountdownTimer />
 
       {/* 2. Top Banner / Hero Greeting */}
@@ -35,10 +35,10 @@ export const Dashboard = () => {
             <span>GATE CSE 2028 Academic Sprint</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Target: 80% Syllabus Mastery by August 1, 2027
+            Target: 100% Syllabus Mastery by August 1, 2027
           </h2>
           <p className="text-sm text-cyan-100/90 leading-relaxed">
-            Designed for college students with 8 AM - 5 PM class constraints. Optimized for mobile 15-min flashcard revisions between lectures.
+            Full 100% syllabus coverage plan across all 11 core computer science subjects and mathematics. Optimized for college schedules.
           </p>
         </div>
 
@@ -63,19 +63,19 @@ export const Dashboard = () => {
       {/* 3. Core Grid: Goal Circle + Today's Focus */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Prominent Goal Circle Card */}
+        {/* Goal Circle Card */}
         <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col items-center justify-center">
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 text-center">
             Overall Syllabus Goal
           </h3>
           <CircularProgress 
             percentage={metrics.overallPercentage} 
-            targetPercentage={80} 
+            targetPercentage={100} 
             coveredWeightage={metrics.coveredWeightage}
           />
         </div>
 
-        {/* Today's Focus Card (Takes 2 columns on lg) */}
+        {/* Today's Focus Card */}
         <div className="lg:col-span-2">
           <TodaysFocus />
         </div>
@@ -85,19 +85,19 @@ export const Dashboard = () => {
       {/* 4. Second Row: Weekly Streak & Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Streak Widget (Takes 2 cols) */}
+        {/* Streak Widget */}
         <div className="lg:col-span-2">
           <StreakCalendar />
         </div>
 
-        {/* Metric Cards Stack */}
+        {/* Metric Cards */}
         <div className="space-y-4 flex flex-col justify-between">
           
           <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
             <div className="space-y-0.5">
               <span className="text-xs text-slate-400 font-medium">Estimated GATE Marks</span>
               <div className="text-2xl font-black text-slate-900 dark:text-white">
-                ~{metrics.coveredWeightage} <span className="text-xs text-slate-400 font-normal">/ 80 Marks Goal</span>
+                ~{metrics.coveredWeightage} <span className="text-xs text-slate-400 font-normal">/ 100 Marks Goal</span>
               </div>
             </div>
             <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-500">

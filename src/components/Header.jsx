@@ -15,9 +15,8 @@ export const Header = () => {
 
   const fileInputRef = useRef(null);
 
-  // Target deadline: August 31, 2027
   const calculateDaysLeft = () => {
-    const targetDate = new Date('2027-08-31T23:59:59');
+    const targetDate = new Date('2027-08-01T00:00:00');
     const today = new Date();
     const diffTime = targetDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -53,12 +52,12 @@ export const Header = () => {
               <h1 className="font-extrabold text-slate-900 dark:text-white text-lg tracking-tight">
                 GATE CSE 2028
               </h1>
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
-                Aug 2027 Blueprint
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                100% Syllabus Goal
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-              Target: 80% Syllabus Coverage • Amit Khurana & Made Easy Ecosystem
+              Target: 100% Syllabus Coverage by Aug 2027 • Amit Khurana & Made Easy Ecosystem
             </p>
           </div>
         </div>
@@ -70,7 +69,7 @@ export const Header = () => {
           <div className="hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-xs">
             <Sparkles className="w-4 h-4 text-amber-500" />
             <span className="text-slate-600 dark:text-slate-300 font-medium">
-              <strong className="text-slate-900 dark:text-white font-bold">{calculateDaysLeft()}</strong> days to Aug 2027 Target
+              <strong className="text-slate-900 dark:text-white font-bold">{calculateDaysLeft()}</strong> days to 100% Target
             </span>
           </div>
 
@@ -124,7 +123,7 @@ export const Header = () => {
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700"
-            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode (Late-Night Study)"}
+            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>

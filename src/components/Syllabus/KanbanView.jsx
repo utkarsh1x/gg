@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePlanner } from '../../context/PlannerContext';
 import { isSubject100PercentComplete } from '../../data/initialSyllabus';
-import { PlayCircle, ExternalLink, CheckCircle2, AlertCircle } from 'lucide-react';
+import { PlayCircle, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
   const { syllabus, toggleChecklist } = usePlanner();
@@ -23,7 +23,6 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
 
       const is100Done = isSubject100PercentComplete(subject);
       const checkedCount = Object.values(subject.checklist).filter(Boolean).length;
-      const totalCount = subject.subTasks.length;
 
       const cardItem = {
         phaseId: phase.phaseId,
@@ -90,28 +89,64 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
           />
         </div>
 
-        {/* Sub-tasks Grid */}
-        <div className="space-y-1.5 pt-1">
+        {/* Sub-tasks Grid with Right Aligned Link Buttons */}
+        <div className="space-y-2 pt-1">
           {subject.subTasks.map(task => {
             const isChecked = !!subject.checklist[task.key];
+            const isTest = task.type === 'test';
+            const youtubeSearchUrl = `https://www.youtube.com/@AmitKhuranaSir/search?query=${encodeURIComponent(subject.name + " " + task.label)}`;
+            const testPortalUrl = "https://onlinetestseries.madeeasy.in/";
+
             return (
-              <button
+              <div
                 key={task.key}
-                onClick={() => toggleChecklist(phaseId, subject.id, task.key)}
-                className={`w-full p-2 rounded-lg text-xs font-semibold flex items-center justify-between transition ${
+                className={`p-2 rounded-xl text-xs font-semibold flex items-center justify-between transition ${
                   isChecked
                     ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                    : 'bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300 hover:bg-slate-100'
+                    : 'bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300'
                 }`}
               >
-                <span className={isChecked ? 'line-through opacity-80' : ''}>{task.label}</span>
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => {}}
-                  className="w-3.5 h-3.5 rounded text-emerald-600 pointer-events-none"
-                />
-              </button>
+                <div 
+                  onClick={() => toggleChecklist(phaseId, subject.id, task.key)}
+                  className="flex items-center space-x-2 truncate cursor-pointer flex-1 pr-1 min-h-[32px]"
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => {}}
+                    className="w-3.5 h-3.5 rounded text-emerald-600 pointer-events-none flex-shrink-0"
+                  />
+                  <span className={`truncate text-[11px] ${isChecked ? 'line-through opacity-80' : ''}`}>
+                    {task.label}
+                  </span>
+                </div>
+
+                <div className="flex-shrink-0">
+                  {isTest ? (
+                    <a
+                      href={testPortalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="px-2 py-1 rounded text-[10px] font-extrabold bg-amber-500/20 text-amber-700 dark:text-amber-300 hover:bg-amber-500 hover:text-white transition flex items-center gap-0.5"
+                    >
+                      <span>📝 Test</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  ) : (
+                    <a
+                      href={youtubeSearchUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="px-2 py-1 rounded text-[10px] font-extrabold bg-red-600/15 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white transition flex items-center gap-0.5"
+                    >
+                      <span>▶️ Video</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
             );
           })}
         </div>
@@ -122,7 +157,6 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       
-      {/* Column 1: To Do */}
       <div className="space-y-4">
         <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -142,7 +176,6 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
         </div>
       </div>
 
-      {/* Column 2: In Progress */}
       <div className="space-y-4">
         <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -162,7 +195,6 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
         </div>
       </div>
 
-      {/* Column 3: Mastered */}
       <div className="space-y-4">
         <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -177,7 +209,7 @@ export const KanbanView = ({ searchQuery, selectedPhaseFilter }) => {
         <div className="space-y-3">
           {columns.mastered.map(renderSubjectCard)}
           {columns.mastered.length === 0 && (
-            <p className="text-xs text-slate-400 text-center py-8">Check off all sub-tasks including PYQs & Made Easy Test to move subjects here!</p>
+            <p className="text-xs text-slate-400 text-center py-8">Complete all sub-tasks including PYQs & Made Easy Test to move subjects here!</p>
           )}
         </div>
       </div>

@@ -6,11 +6,11 @@ import confetti from 'canvas-confetti';
 const PlannerContext = createContext();
 
 const STORAGE_KEYS = {
-  SYLLABUS: 'gate2028_syllabus_v2',
+  SYLLABUS: 'gate2028_syllabus_v3', // v3 for 100% syllabus goal + COA + full CN
   SCHEDULE_WD: 'gate2028_schedule_wd_v1',
   SCHEDULE_WE: 'gate2028_schedule_we_v1',
   STREAKS: 'gate2028_streaks_v1',
-  TODAY_FOCUS: 'gate2028_focus_v2',
+  TODAY_FOCUS: 'gate2028_focus_v3',
   THEME: 'gate2028_theme_v1'
 };
 
@@ -56,8 +56,8 @@ export const PlannerProvider = ({ children }) => {
   const [todayFocus, setTodayFocus] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.TODAY_FOCUS);
     return saved ? JSON.parse(saved) : {
-      subjectId: 'dsa',
-      subjectName: 'Data Structures & Algorithms'
+      subjectId: 'coa',
+      subjectName: 'Computer Organization & Architecture (COA)'
     };
   });
 
@@ -97,7 +97,6 @@ export const PlannerProvider = ({ children }) => {
         if (phase.phaseId === phaseId) {
           const subject = phase.subjects.find(s => s.id === subjectId);
           if (subject) {
-            // Strict rule: Made Easy Test cannot be checked if Solve PYQs is not checked yet
             if (checkKey === 'madeEasyTest' && !subject.checklist.madeEasyTest) {
               if (!subject.checklist.solvePYQs) {
                 alert("Warning: Do not attempt the test series until PYQs are fully solved!");
@@ -230,7 +229,7 @@ export const PlannerProvider = ({ children }) => {
       completedChecklistItems,
       totalChecklistItems,
       totalWeightage,
-      coveredWeightage: Math.min(85, Math.round(coveredWeightage * 10) / 10),
+      coveredWeightage: Math.min(100, Math.round(coveredWeightage * 10) / 10),
       totalSubjects,
       completedSubjects
     };
@@ -258,7 +257,7 @@ export const PlannerProvider = ({ children }) => {
   const currentStreak = calculateCurrentStreak();
 
   const resetAllData = () => {
-    if (window.confirm("Reset all GATE progress data to initial roadmap values?")) {
+    if (window.confirm("Reset all GATE progress data to 100% initial roadmap values?")) {
       setSyllabus(initialSyllabusData);
       setWeekdayBlocks(weekdaySchedule);
       setWeekendBlocks(weekendSchedule);
@@ -281,7 +280,7 @@ export const PlannerProvider = ({ children }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `GATE_CSE_2028_Roadmap_Backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `GATE_CSE_2028_100Percent_Backup_${new Date().toISOString().split('T')[0]}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };

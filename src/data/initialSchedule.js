@@ -3,7 +3,7 @@ export const weekdaySchedule = [
     id: "w1",
     timeBlock: "06:00 AM - 07:00 AM",
     title: "Morning Active Recall & PYQs",
-    color: "green", // Green
+    color: "green",
     isDisabled: false,
     strategy: "Fresh brain focus. Reserved exclusively for active problem solving, derivations, and solving GATE PYQs.",
     completed: false
@@ -12,7 +12,7 @@ export const weekdaySchedule = [
     id: "w2",
     timeBlock: "08:00 AM - 05:00 PM",
     title: "College Classes",
-    color: "gray", // Gray / Disabled
+    color: "gray",
     isDisabled: true,
     strategy: "Mandatory undergraduate college attendance. Blocked out — cannot schedule study tasks during college hours.",
     completed: false
@@ -21,7 +21,7 @@ export const weekdaySchedule = [
     id: "w3",
     timeBlock: "05:00 PM - 07:00 PM",
     title: "Travel, Rest, Dinner",
-    color: "yellow", // Yellow
+    color: "yellow",
     isDisabled: false,
     strategy: "Critical neural decoupling and recovery phase. Commute, relaxation, and dinner before the evening study block.",
     completed: false
@@ -30,7 +30,7 @@ export const weekdaySchedule = [
     id: "w4",
     timeBlock: "07:00 PM - 09:30 PM",
     title: "Amit Khurana Lectures + Notes",
-    color: "blue", // Blue
+    color: "blue",
     isDisabled: false,
     strategy: "Core video lecture consumption at 1.25x-1.5x speed. Take structured handwritten notes and formula cards.",
     completed: false
@@ -39,7 +39,7 @@ export const weekdaySchedule = [
     id: "w5",
     timeBlock: "09:30 PM - 10:30 PM",
     title: "Daily Revision",
-    color: "purple", // Purple
+    color: "purple",
     isDisabled: false,
     strategy: "Consolidate today's learnings. Review formula flashcards, error logs, and plan tomorrow's focus.",
     completed: false
@@ -50,11 +50,11 @@ export const weekendSchedule = [
   {
     id: "we1",
     timeBlock: "07:00 AM - 10:00 AM",
-    title: "Deep Concept Synthesis & Marathon Lectures",
+    title: "Heavy Lecture Consumption & Backlog Clearance (3 Hours)",
     color: "blue",
     isDisabled: false,
     hours: "3.0 Hours",
-    strategy: "Uninterrupted deep focus on high-weightage topics and playlist marathons.",
+    strategy: "Heavy uninterrupted video lecture marathon (Amit Khurana playlists) to drive 100% syllabus completion.",
     completed: false
   },
   {
@@ -113,25 +113,25 @@ export const weekendStickyNotes = [
   {
     id: "note-sat",
     day: "Saturday Reminder",
-    title: "Saturday: Past 7-Days Revision & Marathon Lectures",
+    title: "Saturday: Heavy Lecture Consumption & Backlog Clearance",
     bgColor: "bg-amber-500/10 dark:bg-amber-500/15 border-amber-500/40 text-amber-900 dark:text-amber-200",
     iconColor: "text-amber-500",
     bulletPoints: [
-      "Revise all formula flashcards created during the past 7 days.",
-      "Watch extended Amit Khurana lecture marathons for complex topics.",
-      "Clear pending lecture backlog before Sunday tests."
+      "Heavy video lecture marathons (Amit Khurana playlists) to hit 100% syllabus target.",
+      "Aggressively clear all weekday lecture backlogs across COA, DSA, and Networks.",
+      "Revise past 7 days' formulas and code derivations before Sunday tests."
     ]
   },
   {
     id: "note-sun",
     day: "Sunday Reminder",
-    title: "Sunday: Made Easy Topic Tests & Half-Day Relaxation",
+    title: "Sunday: Made Easy Topic Tests & Strategic Revision",
     bgColor: "bg-cyan-500/10 dark:bg-cyan-500/15 border-cyan-500/40 text-cyan-900 dark:text-cyan-200",
     iconColor: "text-cyan-500",
     bulletPoints: [
-      "Attempt Made Easy online topic-wise and subject tests (11 AM - 1 PM).",
-      "Thoroughly analyze test report and log every wrong question into the error book.",
-      "Enforce mandatory half-day relaxation (1 PM - 3 PM) to refresh for the upcoming week."
+      "Execute Made Easy online topic & subject tests during actual GATE exam hours.",
+      "Comprehensive error log review — classify calculation errors vs concept gaps.",
+      "Enforce half-day relaxation & mental recovery to sustain 100% syllabus velocity."
     ]
   }
 ];
