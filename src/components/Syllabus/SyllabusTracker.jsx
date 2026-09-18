@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { usePlanner } from '../../context/PlannerContext';
 import { AccordionView } from './AccordionView';
-import { KanbanView } from './KanbanView';
-import { Search, LayoutList, Columns, Filter, CheckSquare, PlayCircle, FileText, CheckCircle, HelpCircle } from 'lucide-react';
+import { Search, Filter, CheckSquare, PlayCircle, FileText, CheckCircle, HelpCircle } from 'lucide-react';
 
 export const SyllabusTracker = () => {
   const { syllabus } = usePlanner();
-  const [viewMode, setViewMode] = useState('accordion'); // 'accordion' or 'kanban'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPhaseFilter, setSelectedPhaseFilter] = useState('all');
 
   return (
     <div className="space-y-6">
       
-      {/* Top Banner & View Switcher */}
+      {/* Top Banner */}
       <div className="p-6 rounded-2xl bg-gradient-to-r from-cyan-900 via-slate-900 to-slate-950 text-white border border-slate-800 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2">
@@ -23,32 +21,6 @@ export const SyllabusTracker = () => {
           <p className="text-xs text-slate-400 mt-1">
             Track your 4-step execution for every module: Watch Lecture ➔ Make Notes ➔ Solve PYQs ➔ Made Easy Test.
           </p>
-        </div>
-
-        {/* Accordion vs Kanban View Switcher */}
-        <div className="w-full sm:w-auto flex items-center p-1 rounded-xl bg-slate-800 border border-slate-700">
-          <button
-            onClick={() => setViewMode('accordion')}
-            className={`flex-1 sm:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center space-x-1.5 whitespace-nowrap ${
-              viewMode === 'accordion'
-                ? 'bg-cyan-500 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <LayoutList className="w-4 h-4 shrink-0" />
-            <span>Accordion List</span>
-          </button>
-          <button
-            onClick={() => setViewMode('kanban')}
-            className={`flex-1 sm:flex-none px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center justify-center space-x-1.5 whitespace-nowrap ${
-              viewMode === 'kanban'
-                ? 'bg-cyan-500 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <Columns className="w-4 h-4 shrink-0" />
-            <span>Kanban Board</span>
-          </button>
         </div>
       </div>
 
@@ -75,7 +47,7 @@ export const SyllabusTracker = () => {
             onChange={(e) => setSelectedPhaseFilter(e.target.value)}
             className="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-xs rounded-xl p-2 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-cyan-500"
           >
-            <option value="all">All 6 Preparation Phases</option>
+            <option value="all">All Preparation Phases</option>
             {syllabus.map(p => (
               <option key={p.phaseId} value={p.phaseId}>
                 {p.phaseName.split(':')[0]} ({p.timeline.split('–')[0].trim()})
@@ -103,18 +75,11 @@ export const SyllabusTracker = () => {
         </span>
       </div>
 
-      {/* Main View Render */}
-      {viewMode === 'accordion' ? (
-        <AccordionView 
-          searchQuery={searchQuery} 
-          selectedPhaseFilter={selectedPhaseFilter} 
-        />
-      ) : (
-        <KanbanView 
-          searchQuery={searchQuery} 
-          selectedPhaseFilter={selectedPhaseFilter} 
-        />
-      )}
+      {/* Accordion View Render */}
+      <AccordionView 
+        searchQuery={searchQuery} 
+        selectedPhaseFilter={selectedPhaseFilter} 
+      />
 
     </div>
   );
