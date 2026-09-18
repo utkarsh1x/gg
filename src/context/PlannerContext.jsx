@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti';
 const PlannerContext = createContext();
 
 const STORAGE_KEYS = {
-  SYLLABUS: 'gate2028_syllabus_v3', // v3 for 100% syllabus goal + COA + full CN
+  SYLLABUS: 'gate2028_syllabus_v5', // v5 for topic-specific playlist queries
   SCHEDULE_WD: 'gate2028_schedule_wd_v1',
   SCHEDULE_WE: 'gate2028_schedule_we_v1',
   STREAKS: 'gate2028_streaks_v1',
@@ -88,7 +88,6 @@ export const PlannerProvider = ({ children }) => {
     localStorage.setItem(STORAGE_KEYS.TODAY_FOCUS, JSON.stringify(todayFocus));
   }, [todayFocus]);
 
-  // Toggle checklist sub-task with strict PYQ -> Test ordering rule
   const toggleChecklist = (phaseId, subjectId, checkKey) => {
     setSyllabus(prevSyllabus => {
       let preventToggle = false;
@@ -257,7 +256,7 @@ export const PlannerProvider = ({ children }) => {
   const currentStreak = calculateCurrentStreak();
 
   const resetAllData = () => {
-    if (window.confirm("Reset all GATE progress data to 100% initial roadmap values?")) {
+    if (window.confirm("Reset all GATE progress data to initial roadmap values?")) {
       setSyllabus(initialSyllabusData);
       setWeekdayBlocks(weekdaySchedule);
       setWeekendBlocks(weekendSchedule);
@@ -280,7 +279,7 @@ export const PlannerProvider = ({ children }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `GATE_CSE_2028_100Percent_Backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `GATE_CSE_2028_Roadmap_Backup_${new Date().toISOString().split('T')[0]}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };

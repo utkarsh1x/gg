@@ -162,14 +162,14 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
                           </div>
                         </div>
 
-                        {/* Playlist Link & Notes */}
+                        {/* Subject Playlist Link & Notes */}
                         <div className="flex items-center space-x-2">
                           <a
                             href={subject.youtubeUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold bg-red-600 hover:bg-red-700 text-white transition flex items-center gap-1.5 shadow-md shadow-red-600/20"
-                            title="Open Full Amit Khurana Playlist"
+                            title={`Search ${subject.name} Playlist on YouTube`}
                           >
                             <PlayCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-red-600" />
                             <span>Amit Khurana Playlist</span>
@@ -186,7 +186,7 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
                         </div>
                       </div>
 
-                      {/* Sub-Task Checkboxes Grid with Responsive Non-overlapping Buttons */}
+                      {/* Sub-Task Checkboxes Grid with Exact Topic Video Links */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                         {subject.subTasks.map(task => {
                           const isChecked = !!subject.checklist[task.key];
@@ -197,7 +197,8 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
                           if (isPYQ) Icon = CheckCircle;
                           if (isTest) Icon = HelpCircle;
 
-                          const youtubeSearchUrl = `https://www.youtube.com/@AmitKhuranaSir/search?query=${encodeURIComponent(subject.name + " " + task.label)}`;
+                          const videoQueryStr = task.videoQuery || `Amit Khurana ${subject.name} ${task.label} GATE`;
+                          const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(videoQueryStr)}`;
                           const testPortalUrl = "https://onlinetestseries.madeeasy.in/";
 
                           return (
@@ -228,7 +229,7 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
                                 </div>
                               </div>
 
-                              {/* Right side: Action Link Button */}
+                              {/* Right side: Direct Specific Video/Test Button */}
                               <div className="flex items-center justify-end sm:justify-start flex-shrink-0">
                                 {isTest ? (
                                   <a
@@ -249,7 +250,7 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
                                     className="px-2.5 py-1.5 rounded-lg text-[11px] font-extrabold bg-red-600/10 dark:bg-red-600/20 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white border border-red-600/30 transition flex items-center gap-1 shadow-sm min-h-[34px]"
-                                    title={`Watch ${task.label} Video on Amit Khurana Channel`}
+                                    title={`Watch exact ${task.label} lecture video by Amit Khurana Sir`}
                                   >
                                     <span>▶️ Watch Video</span>
                                     <ExternalLink className="w-3 h-3 opacity-90" />
