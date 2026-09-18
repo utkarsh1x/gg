@@ -199,7 +199,7 @@ export const AccordionView = ({ searchQuery, selectedPhaseFilter }) => {
 
                           const videoQueryStr = task.videoQuery || `Amit Khurana ${subject.name} ${task.label} GATE`;
                           const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(videoQueryStr)}`;
-                          const testPortalUrl = "https://onlinetestseries.madeeasy.in/";
+                          const testPortalUrl = "https://www.madeeasy.in/prep/testseries/gate-2027-computer-science-engineering-online-test-series?redirectTo=https%3A%2F%2Fwww.madeeasy.in%2Fprep%2Ftestseries%2Fgate-2027-computer-science-engineering-online-test-series";
 
                           return (
                             <div
